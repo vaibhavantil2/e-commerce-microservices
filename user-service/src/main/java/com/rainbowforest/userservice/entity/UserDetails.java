@@ -68,6 +68,14 @@ public class UserDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getSellerId() {
+		return sellerID;
+	}
+
+	public void setSellerId(String sellerID) {
+		this.sellerID = sellerID;
+	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;
