@@ -75,6 +75,39 @@ public class RecommendationController {
         		headerGenerator.getHeadersForError(),
         		HttpStatus.BAD_REQUEST);
     }
+	
+	@PostMapping(value = "/{userId}/product_feedback/{productId}")
+    private ResponseEntity<FeedBack> saveFeebacks(
+            @PathVariable ("userId") Long userId,
+            @PathVariable ("productId") Long productId,
+            @RequestParam ("feedback") int feebackFromUser,
+            HttpServletRequest request){
+    	
+    	Product product = productClient.getProductById(productId);
+		User user = userClient.getUserById(userId);
+    	
+		if(product != null && user != null) {
+			try {
+				Recommendation recommendation = new Recommendation();
+				recommendation.setProduct(product);
+				recommendation.setUser(user);
+				recommendation.setRating(rating);
+				recommendationService.saveRecommendation(recommendation);
+				return new ResponseEntity<Recommendation>(
+						recommendation,
+						headerGenerator.getHeadersForSuccessPostMethod(request, recommendation.getId()),
+						HttpStatus.CREATED);
+			}catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<Recommendation>(
+						headerGenerator.getHeadersForError(),
+						HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+        return new ResponseEntity<Recommendation>(
+        		headerGenerator.getHeadersForError(),
+        		HttpStatus.BAD_REQUEST);
+    }
 
     @DeleteMapping(value = "/recommendations/{id}")
     private ResponseEntity<Void> deleteRecommendations(@PathVariable("id") Long id){
