@@ -58,6 +58,7 @@ public class RecommendationController {
 			try {
 				Recommendation recommendation = new Recommendation();
 				recommendation.setProduct(product);
+				recommendation.setProductDiscount(product_discount);
 				recommendation.setUser(user);
 				recommendation.setRating(rating);
 				recommendationService.saveRecommendation(recommendation);
