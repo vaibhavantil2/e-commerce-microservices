@@ -89,7 +89,7 @@ public class ProductControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$[0].id").value(PRODUCT_ID))
-                .andExpect(jsonPath("$[0].category").value(PRODUCT_CATEGORY));
+                .andExpect(jsonPath("$[0].review").value(PRODUCT_REVIEW));
 
         verify(productService, times(1)).getAllProductByCategory(anyString());
         verifyNoMoreInteractions(productService);
