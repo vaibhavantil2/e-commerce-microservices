@@ -35,6 +35,7 @@ public class RecommendationController {
         if(!recommendations.isEmpty()) {
         	return new ResponseEntity<List<Recommendation>>(
         		recommendations,
+			productOffer,
         		headerGenerator.getHeadersForSuccessGetMethod(),
         		HttpStatus.OK);
         }
