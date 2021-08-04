@@ -99,8 +99,32 @@ public class OrderControllerTest {
         .andExpect(status().isCreated())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
         .andExpect(jsonPath("$.items").isArray());
-
+	}
+	
+	public void save_cancel_order_controller_should_return_when_valid_request() throws Exception {
 		verify(orderService, times(1)).saveOrder(any(Order.class));
-		verifyNoMoreInteractions(orderService);
+		verifyNoMoreInteractions(orderService);	
+		Item item = new Item();
+		item.setProduct(product);
+		item.setQuantity(1);
+		List<Item> cart = new ArrayList<Item>();
+		cart.add(item);
+		
+		Order order = new Order();
+		order.setItems(cart);
+		order.setUser(user);
+		
+		Cookie cookie = new Cookie("cartId", CART_ID);
+		
+		//when
+		when(cartService.getAllItemsFromCart(CART_ID)).thenReturn(cart);
+		when(userClient.getUserById(USER_ID)).thenReturn(user);
+		when(orderService.saveOrder(new Order())).thenReturn(order);
+		//then
+		
+		mockMvc.perform(post("/order/{userId}", USER_ID).cookie(new Cookie[] {cookie}))
+        .andExpect(status().isCreated())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(jsonPath("$.items").isArray());
 	}
 }
