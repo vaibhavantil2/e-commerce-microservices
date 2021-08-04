@@ -26,10 +26,11 @@ public class Recommendation {
 	
 	}
 
-	public Recommendation(int rating, Product product, User user) {
+	public Recommendation(int rating, Product product, User user, Coupon coupon) {
         this.rating = rating;
         this.product = product;
         this.user = user;
+	this.coupon = coupon;
     }
 
     public void setId(Long id) {
