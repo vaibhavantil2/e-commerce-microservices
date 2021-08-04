@@ -63,7 +63,7 @@ public class ProductControllerTests {
     }
     
     @Test
-    public void  get_all_products_controller_should_return404_when_productList_isEmpty() throws Exception {
+    public void  get_all_products_controller_should_return_productList_isEmpty() throws Exception {
     	//given
     	List<Product> products = new ArrayList<Product>();
     	
@@ -82,7 +82,7 @@ public class ProductControllerTests {
     	
     	
     @Test
-    public void get_all_product_by_category_controller_should_return200_when_validRequest() throws Exception {
+    public void get_all_product_by_category_controller_should_returnvalidRequest() throws Exception {
     	//when
         when(productService.getAllProductByCategory(PRODUCT_CATEGORY)).thenReturn(products);
 
@@ -98,7 +98,7 @@ public class ProductControllerTests {
     }
 
     @Test
-    public void get_all_product_by_category_controller_should_return404_when_productList_isEmpty() throws Exception {
+    public void get_all_product_by_category_controller_should_return_productList_isEmpty() throws Exception {
     	//given
     	List<Product> products = new ArrayList<Product>();
     	
@@ -115,7 +115,7 @@ public class ProductControllerTests {
     }
     
     @Test
-    public void get_one_product_by_id_controller_should_return200_when_validRequest() throws Exception {
+    public void get_one_product_by_id_controller_should_return_validRequest() throws Exception {
     	//when
         when(productService.getProductById(anyLong())).thenReturn(product);
         
