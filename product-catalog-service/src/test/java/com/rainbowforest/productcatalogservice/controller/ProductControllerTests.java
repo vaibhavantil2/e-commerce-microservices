@@ -132,7 +132,7 @@ public class ProductControllerTests {
     }
     
     @Test
-    public void get_one_product_by_id_controller_should_return404_when_product_isNotExist() throws Exception {
+    public void get_one_product_by_id_controller_should_return_product_isNotExist() throws Exception {
     	//when
         when(productService.getProductById(anyLong())).thenReturn(null);
         
