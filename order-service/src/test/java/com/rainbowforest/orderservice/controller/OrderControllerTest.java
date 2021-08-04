@@ -66,12 +66,13 @@ public class OrderControllerTest {
 	    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	
-	@Test
+	
 	public void save_order_controller_should_return201_when_valid_request() throws Exception {
 		//given
 		Product product = new Product();
 		product.setId(PRODUCT_ID);
 		product.setProductName(PRODUCT_NAME);
+		product.setReview(PRODUCT_REVIEW)
 		
 		User user = new User();
 		user.setUserName(USER_NAME);
